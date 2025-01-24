@@ -3,8 +3,8 @@
 Main script to execute CVaR-QRDQN demo
 """
 
-from CVaR_QRDQN.train import train
-from CVaR_QRDQN.evaluate import evaluate
+from train import train
+from evaluate import evaluate
 
 def main():
     # Training parameters

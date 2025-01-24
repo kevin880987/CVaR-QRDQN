@@ -14,15 +14,18 @@ def train(env_name, num_episodes, max_steps, epsilon_start, epsilon_end, epsilon
 
     epsilon = epsilon_start
     for episode in range(num_episodes):
-        state = env.reset()
+        state, info = env.reset()
         total_reward = 0
 
         for step in range(max_steps):
             action = agent.select_action(state, epsilon)
-            next_state, reward, done, _ = env.step(action)
+            next_state, reward, done, info, _ = env.step(action)
             total_reward += reward
 
-            agent.update((state, action, reward, next_state, done))
+            states, actions, rewards, next_states, dones = \
+                np.array(state)[np.newaxis, :], np.array([action])[np.newaxis, :], np.array([reward])[np.newaxis, :], np.array(next_state)[np.newaxis, :], np.array([done])[np.newaxis, :]
+
+            agent.update(batch=(states, actions, rewards, next_states, dones))
 
             state = next_state
             if done:

@@ -19,13 +19,13 @@ class CVaRQRDQN(nn.Module):
         self.fc2 = nn.Linear(128, 128)
         self.fc3 = nn.Linear(128, action_dim * num_quantiles)
 
-    def forward(self, state):
-        x = torch.relu(self.fc1(state))
+    def forward(self, states):
+        x = torch.relu(self.fc1(states))
         x = torch.relu(self.fc2(x))
         quantiles = self.fc3(x).view(-1, self.action_dim, self.num_quantiles)
         return quantiles
 
-    def get_q_values(self, state, action):
-        quantiles = self.forward(state)
-        action_quantiles = quantiles.gather(1, action.unsqueeze(-1).expand(-1, -1, self.num_quantiles))
+    def get_q_values(self, states, actions):
+        quantiles = self.forward(states)
+        action_quantiles = quantiles.gather(1, actions.unsqueeze(-1).expand(-1, -1, self.num_quantiles))
         return action_quantiles.mean(dim=-1)

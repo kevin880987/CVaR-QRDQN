@@ -13,12 +13,12 @@ def evaluate(env_name, model_path, num_episodes, max_steps, num_quantiles):
     agent.model.load_state_dict(torch.load(model_path))
 
     for episode in range(num_episodes):
-        state = env.reset()
+        state, info = env.reset()
         total_reward = 0
 
         for step in range(max_steps):
             action = agent.select_action(state, epsilon=0)
-            next_state, reward, done, _ = env.step(action)
+            next_state, reward, done, info, _ = env.step(action)
             total_reward += reward
             state = next_state
             if done:

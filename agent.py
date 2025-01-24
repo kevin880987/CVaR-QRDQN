@@ -6,6 +6,7 @@ Agent implementation for CVaR-QRDQN
 import numpy as np
 import torch
 import torch.optim as optim
+import torch.nn.functional as F
 from cvar_qrdqn import CVaRQRDQN
 
 class Agent:
@@ -31,21 +32,29 @@ class Agent:
     def update(self, batch):
         states, actions, rewards, next_states, dones = batch
 
-        states = torch.FloatTensor(states)
-        actions = torch.LongTensor(actions)
-        rewards = torch.FloatTensor(rewards)
-        next_states = torch.FloatTensor(next_states)
-        dones = torch.FloatTensor(dones)
+        states = torch.FloatTensor(np.array(states))
+        actions = torch.LongTensor(np.array(actions))
+        rewards = torch.FloatTensor(np.array(rewards))
+        next_states = torch.FloatTensor(np.array(next_states))
+        dones = torch.FloatTensor(np.array(dones))
 
         quantiles = self.model(states)
         next_quantiles = self.model(next_states).detach()
 
-        q_values = quantiles.gather(1, actions.unsqueeze(-1).expand(-1, -1, self.num_quantiles)).mean(dim=-1)
+        q_values = self.model.get_q_values(states, actions)
         next_q_values = next_quantiles.mean(dim=-1).max(dim=1)[0]
 
         targets = rewards + self.gamma * next_q_values * (1 - dones)
-        loss = (q_values - targets.unsqueeze(-1)).pow(2).mean()
+        targets = targets.unsqueeze(-1).expand(-1, -1, self.num_quantiles)
+
+        # Calculate Huber loss
+        td_errors = quantiles - targets
+        huber_loss = F.smooth_l1_loss(td_errors, torch.zeros_like(td_errors), reduction='none')
+
+        # Calculate CVaR
+        cvar_loss = huber_loss.mean(dim=-1)
+        cvar_loss = cvar_loss.mean()
 
         self.optimizer.zero_grad()
-        loss.backward()
+        cvar_loss.backward()
         self.optimizer.step()

@@ -1,0 +1,19 @@
+# Derived tier: rebuilt from this working directory, never committed.
+# Everything else here is the project's own authored record and is.
+index/
+reports/
+
+# Operating system and editor bookkeeping, per
+# mind.policy.entries.system_maintenance.git_repo_hygiene.
+.DS_Store
+Thumbs.db
+desktop.ini
+*.pyc
+.pytest_cache/
+*.swp
+
+# Carried by the cloud sync rather than by git, per
+# mind.policy.entries.system_maintenance.cloud_synced_repos.
+runtime/
+remotes.json
+synced-repo.json

@@ -1,0 +1,18 @@
+{
+  "artifacts": {
+    "agent-memory": {
+      "files": 1,
+      "tier": "authored"
+    }
+  },
+  "project": {
+    "name": "CVaR-QRDQN"
+  },
+  "schema_version": 1,
+  "tiers": {
+    "derived": [
+      "index",
+      "reports"
+    ]
+  }
+}

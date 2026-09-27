@@ -8,7 +8,11 @@ reports/
 .DS_Store
 Thumbs.db
 desktop.ini
+.tmp.drivedownload/
+.tmp.driveupload/
+.~lock.*#
 *.pyc
+__pycache__/
 .pytest_cache/
 *.swp
 

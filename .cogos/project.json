@@ -3,5 +3,7 @@
   "git": "storage",
   "id": "8dd782ac61c2b2321b4d5baaf9017302",
   "name": "CVaR-QRDQN",
-  "schema_version": 1
+  "schema_version": 1,
+  "record_placement": "project",
+  "record_placement_reason": "its records describe work inside this folder, and no session outside it reads them"
 }

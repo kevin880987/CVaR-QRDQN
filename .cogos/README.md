@@ -5,7 +5,7 @@ decides whether losing it costs a rebuild or costs the record.
 
 | Tier | What it holds | In version control |
 | --- | --- | --- |
-| Derived | Views rebuilt from this directory: `index/`, `reports/` | Excluded by `.cogos/.gitignore` |
+| Derived | Views rebuilt from this directory: `reports/` | Excluded by `.cogos/.gitignore` |
 | Authored | This project's own record of itself | Intended for version control; verify the actual commit and backup |
 
 Do not delete this directory merely because some views are derived. Authored

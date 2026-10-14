@@ -1,6 +1,8 @@
 # Derived tier: rebuilt from this working directory, never committed.
 # Everything else here is the project's own authored record and is.
 reports/
+tmp/
+logs/
 
 # Operating system and editor bookkeeping, per
 # mind.policy.entries.system_maintenance.git_repo_hygiene.

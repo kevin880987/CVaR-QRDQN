@@ -5,7 +5,7 @@ tmp/
 logs/
 
 # Operating system and editor bookkeeping, per
-# mind.policy.entries.system_maintenance.git_repo_hygiene.
+# mind.policy.entries.system_maintenance.placement.
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -18,7 +18,7 @@ __pycache__/
 *.swp
 
 # Carried by the cloud sync rather than by git, per
-# mind.policy.entries.system_maintenance.cloud_synced_repos.
+# mind.policy.entries.system_maintenance.placement.
 runtime/
 remotes.json
 synced-repo.json

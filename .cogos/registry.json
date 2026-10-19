@@ -1,11 +1,11 @@
 {
   "artifacts": {
     "agenda": {
-      "files": 4,
+      "files": 0,
       "tier": "authored"
     },
     "agent-memory": {
-      "files": 2,
+      "files": 1,
       "tier": "authored"
     },
     "logs": {

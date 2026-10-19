@@ -17,5 +17,5 @@ does not prove that the current record is recoverable.
 edit to either is overwritten on the next render. This applies only to those
 generated views, not to the authored records they describe.
 
-Contract: `mind.policy.entries.execution.project_local_state`.
+Contract: `mind.policy.entries.system_maintenance.placement`.
 Commands: `mind/skill/entries/ops/project-management/project-state/handler.py`.

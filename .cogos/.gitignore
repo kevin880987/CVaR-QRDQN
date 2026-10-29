@@ -16,6 +16,7 @@ desktop.ini
 __pycache__/
 .pytest_cache/
 *.swp
+.entire/
 
 # Carried by the cloud sync rather than by git, per
 # mind.policy.entries.system_maintenance.placement.
